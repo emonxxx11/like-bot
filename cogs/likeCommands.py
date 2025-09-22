@@ -129,20 +129,18 @@ class LikeCommands(commands.Cog):
 
                     if data.get("status") == 1:
                         embed.description = (
-                            f"\n"
-                            f"┌  ACCOUNT\n"
-                            f"├─ NICKNAME: {data.get('player', 'Unknown')}\n"
-                            f"├─ UID: {uid}\n"
-                            f"└─ RESULT:\n"
-                            f"   ├─ ADDED: +{data.get('likes_added', 0)}\n"
-                            f"   ├─ BEFORE: {data.get('likes_before', 'N/A')}\n"
-                            f"   └─ AFTER: {data.get('likes_after', 'N/A')}\n"
+                            f"**Account Name:** {data.get('player', 'Unknown')}\n"
+                            f"**Account Region:** {data.get('region', 'Unknown')}\n"
+                            f"**Account UID:** {uid}\n\n"
+                            f"**Likes before Command:** {data.get('likes_before', 'N/A')}\n"
+                            f"**Likes after Command:** {data.get('likes_after', 'N/A')}\n"
+                            f"**Likes Given By Bot:** {data.get('likes_added', 0)} Likes"
                         )
                     else:
                         embed.description = "This UID has already received the maximum likes today.\nPlease wait 24 hours and try again"
 
-                    embed.set_footer(text="DEVELOPED BY THUG")
-                    embed.description += "\n🔗 JOIN : https://discord.gg/awPm5B3QFg"
+                    embed.set_footer(text="Powered by EMON XITER'S")
+                    embed.description += "\n🔗 JOIN : https://discord.gg/98QznNwPCc"
                     await ctx.send(embed=embed, mention_author=True, ephemeral=is_slash)
 
         except asyncio.TimeoutError:
