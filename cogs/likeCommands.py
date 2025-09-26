@@ -58,10 +58,8 @@ class LikeCommands(commands.Cog):
         """Get flag emoji for server region"""
         flags = {
             "IND": "🇮🇳",  # India
-            "BR": "🇧🇷",   # Brazil
-            "US": "🇺🇸",   # United States
-            "SAC": "🇺🇸",  # South America (using US flag)
-            "NA": "🇺🇸"    # North America (using US flag)
+            "BD": "🇧🇩",   # Bangladesh
+            "BR": "🇧🇷"    # Brazil
         }
         return flags.get(server.upper(), "🌍")
 
@@ -118,12 +116,6 @@ class LikeCommands(commands.Cog):
                                 inline=False
                             )
                             
-                            # Daily Limit Section (visual representation)
-                            embed.add_field(
-                                name="📈 Your Daily Limit",
-                                value="🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩\n(1/1 Likes Used)",
-                                inline=False
-                            )
                             
                             # Promotional Banner
                             embed.add_field(
@@ -176,7 +168,7 @@ class LikeCommands(commands.Cog):
             await ctx.send(f"✅ Channel {channel.mention} is now **allowed** for /like commands. The command will **only** work in specified channels if any are set.", ephemeral=True)
 
     @commands.hybrid_command(name="like", description="Sends likes to a Free Fire player")
-    @app_commands.describe(uid="Player UID (numbers only, minimum 6 characters)")
+    @app_commands.describe(uid="Player UID (numbers only, minimum 6 characters)", server="Server region (IND, BD, BR)")
     async def like_command(self, ctx: commands.Context,server:str=None , uid: str = None):
         is_slash = ctx.interaction is not None
 
@@ -204,6 +196,11 @@ class LikeCommands(commands.Cog):
             await ctx.reply("Invalid UID. It must contain only numbers and be at least 6 characters long.", mention_author=False, ephemeral=is_slash)
             return
 
+        # Validate server
+        valid_servers = ["IND", "BD", "BR"]
+        if server.upper() not in valid_servers:
+            await ctx.reply(f"Invalid server. Must be one of: {', '.join(valid_servers)}", mention_author=False, ephemeral=is_slash)
+            return
 
         try:
             async with ctx.typing():
@@ -259,12 +256,6 @@ class LikeCommands(commands.Cog):
                             inline=False
                         )
                         
-                        # Daily Limit Section (visual representation)
-                        embed.add_field(
-                            name="📈 Your Daily Limit",
-                            value="🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩\n(1/1 Likes Used)",
-                            inline=False
-                        )
                         
                         # Promotional Banner
                         embed.add_field(
@@ -286,7 +277,7 @@ class LikeCommands(commands.Cog):
             await self._send_error_embed(ctx, "Critical Error", "An unexpected error occurred. Please try again later.", ephemeral=is_slash)
 
     @commands.hybrid_command(name="auto_like", description="Automatically sends likes to a Free Fire player every 24 hours")
-    @app_commands.describe(uid="Player UID (numbers only, minimum 6 characters)", server="Server region (IND, BR, US, SAC, NA)")
+    @app_commands.describe(uid="Player UID (numbers only, minimum 6 characters)", server="Server region (IND, BD, BR)")
     async def auto_like_command(self, ctx: commands.Context, uid: str, server: str):
         is_slash = ctx.interaction is not None
         
@@ -304,7 +295,7 @@ class LikeCommands(commands.Cog):
             return
 
         # Validate server
-        valid_servers = ["IND", "BR", "US", "SAC", "NA"]
+        valid_servers = ["IND", "BD", "BR"]
         if server.upper() not in valid_servers:
             await ctx.reply(f"Invalid server. Must be one of: {', '.join(valid_servers)}", mention_author=False, ephemeral=is_slash)
             return
