@@ -422,17 +422,35 @@ class LikeCommands(commands.Cog):
     async def _send_player_not_found(self, ctx, uid):
         embed = discord.Embed(title="Player Not Found", description=f"The UID {uid} does not exist or is not accessible.", color=0xE74C3C)
         embed.add_field(name="Tip", value="Make sure that:\n- The UID is correct\n- The player is not private", inline=False)
-        await ctx.send(embed=embed, ephemeral=True)
+        try:
+            if ctx.interaction and not ctx.interaction.response.is_done():
+                await ctx.send(embed=embed, ephemeral=True)
+            elif not ctx.interaction:
+                await ctx.send(embed=embed)
+        except Exception as e:
+            print(f"Failed to send player not found embed: {e}")
         
     async def _send_api_error(self, ctx):
         embed = discord.Embed(title="⚠️ Service Unavailable", description="The Free Fire API is not responding at the moment.", color=0xF39C12)
         embed.add_field(name="Solution", value="Try again in a few minutes.", inline=False)
-        await ctx.send(embed=embed, ephemeral=True)
+        try:
+            if ctx.interaction and not ctx.interaction.response.is_done():
+                await ctx.send(embed=embed, ephemeral=True)
+            elif not ctx.interaction:
+                await ctx.send(embed=embed)
+        except Exception as e:
+            print(f"Failed to send API error embed: {e}")
 
     async def _send_error_embed(self, ctx, title, description, ephemeral=True):
         embed = discord.Embed(title=f"❌ {title}", description=description, color=discord.Color.red(), timestamp=datetime.now())
         embed.set_footer(text="An error occurred.")
-        await ctx.send(embed=embed, ephemeral=ephemeral)
+        try:
+            if ctx.interaction and not ctx.interaction.response.is_done():
+                await ctx.send(embed=embed, ephemeral=ephemeral)
+            elif not ctx.interaction:
+                await ctx.send(embed=embed)
+        except Exception as e:
+            print(f"Failed to send error embed: {e}")
 
     def cog_unload(self):
         self.bot.loop.create_task(self.session.close())
