@@ -86,56 +86,20 @@ class LikeCommands(commands.Cog):
                         )
                         
                         if data.get("status") == 1:
-                            # Create a more visually appealing embed for auto-like
-                            embed.title = "🔄 AUTO LIKE EXECUTED"
                             embed.description = (
-                                "✅ Auto-like delivered successfully!\n"
-                                "✨ Perfect execution!"
-                            )
-                            
-                            # Player Info Section
-                            embed.add_field(
-                                name="👤 Player Info",
-                                value=f"```\n[UID]     {uid}\n[Name]    {data.get('player', 'Unknown')}```",
-                                inline=True
-                            )
-                            
-                            # Server Region Section
-                            embed.add_field(
-                                name="🌐 Server Region",
-                                value=f"```\n{self.format_server_with_flag(data.get('region', 'Unknown'))} Server```",
-                                inline=True
-                            )
-                            
-                            # Like Stats Section
-                            likes_before = data.get('likes_before', 0)
-                            likes_after = data.get('likes_after', 0)
-                            likes_added = data.get('likes_added', 0)
-                            
-                            embed.add_field(
-                                name="📊 Like Stats",
-                                value=f"```\nBefore: {likes_before} likes\nAfter:  {likes_after} likes\nAdded:  {likes_added} likes```",
-                                inline=False
-                            )
-                            
-                            # Daily Limit Section (visual representation)
-                            embed.add_field(
-                                name="📈 Your Daily Limit",
-                                value="🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩\n(1/1 Likes Used)",
-                                inline=False
-                            )
-                            
-                            # Promotional Banner
-                            embed.add_field(
-                                name="",
-                                value="**FREE FIRE LIKE**\n*LUMINA OFFICIAL*\n\n**INSTANT DELIVERY**",
-                                inline=False
+                                f"**Account Name:** {data.get('player', 'Unknown')}\n"
+                                f"**Account Region:** {self.format_server_with_flag(data.get('region', 'Unknown'))}\n"
+                                f"**Account UID:** {uid}\n\n"
+                                f"**Likes before Auto-Like:** {data.get('likes_before', 'N/A')}\n"
+                                f"**Likes after Auto-Like:** {data.get('likes_after', 'N/A')}\n"
+                                f"**Likes Given By Bot:** {data.get('likes_added', 0)} Likes"
                             )
                         else:
                             embed.description = "This UID has already received the maximum likes today.\nAuto-like will try again in 24 hours."
                         
-                        embed.set_footer(text=f"🔹 Auto-like executed • Powered by EMON XITER'S AND PMM CHEAT'S")
+                        embed.set_footer(text="**Powered by EMON XITER'S AND PMM CHEAT'S**")
                         embed.set_image(url="https://cdn.discordapp.com/attachments/1387354011744866386/1420067300253634673/standard_2.gif?ex=68d757fb&is=68d6067b&hm=9664b25e6e204e2c9faf9dc478c9ecf3aab6f0b29442d4883bda5a50a6320af4")
+                        embed.description += "\n🔗 JOIN : https://discord.gg/98QznNwPCc"
                         await channel.send(f"<@{user_id}>", embed=embed)
         except Exception as e:
             print(f"Error in auto-like for UID {uid}: {e}")
@@ -227,56 +191,20 @@ class LikeCommands(commands.Cog):
                     )
 
                     if data.get("status") == 1:
-                        # Create a more visually appealing embed
-                        embed.title = "🎉 LIKE SUCCESS"
                         embed.description = (
-                            "✅ Likes delivered successfully!\n"
-                            "✨ Perfect execution!"
-                        )
-                        
-                        # Player Info Section
-                        embed.add_field(
-                            name="👤 Player Info",
-                            value=f"```\n[UID]     {uid}\n[Name]    {data.get('player', 'Unknown')}```",
-                            inline=True
-                        )
-                        
-                        # Server Region Section
-                        embed.add_field(
-                            name="🌐 Server Region",
-                            value=f"```\n{self.format_server_with_flag(data.get('region', 'Unknown'))} Server```",
-                            inline=True
-                        )
-                        
-                        # Like Stats Section
-                        likes_before = data.get('likes_before', 0)
-                        likes_after = data.get('likes_after', 0)
-                        likes_added = data.get('likes_added', 0)
-                        
-                        embed.add_field(
-                            name="📊 Like Stats",
-                            value=f"```\nBefore: {likes_before} likes\nAfter:  {likes_after} likes\nAdded:  {likes_added} likes```",
-                            inline=False
-                        )
-                        
-                        # Daily Limit Section (visual representation)
-                        embed.add_field(
-                            name="📈 Your Daily Limit",
-                            value="🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩\n(1/1 Likes Used)",
-                            inline=False
-                        )
-                        
-                        # Promotional Banner
-                        embed.add_field(
-                            name="",
-                            value="**FREE FIRE LIKE**\n*LUMINA OFFICIAL*\n\n**INSTANT DELIVERY**",
-                            inline=False
+                            f"**Account Name:** {data.get('player', 'Unknown')}\n"
+                            f"**Account Region:** {self.format_server_with_flag(data.get('region', 'Unknown'))}\n"
+                            f"**Account UID:** {uid}\n\n"
+                            f"**Likes before Command:** {data.get('likes_before', 'N/A')}\n"
+                            f"**Likes after Command:** {data.get('likes_after', 'N/A')}\n"
+                            f"**Likes Given By Bot:** {data.get('likes_added', 0)} Likes"
                         )
                     else:
                         embed.description = "This UID has already received the maximum likes today.\nPlease wait 24 hours and try again"
 
-                    embed.set_footer(text=f"🔹 Requested by {ctx.author.display_name} • Powered by EMON XITER'S AND PMM CHEAT'S")
+                    embed.set_footer(text="**Powered by EMON XITER'S AND PMM CHEAT'S**")
                     embed.set_image(url="https://cdn.discordapp.com/attachments/1387354011744866386/1420067300253634673/standard_2.gif?ex=68d757fb&is=68d6067b&hm=9664b25e6e204e2c9faf9dc478c9ecf3aab6f0b29442d4883bda5a50a6320af4")
+                    embed.description += "\n🔗 JOIN : https://discord.gg/98QznNwPCc"
                     await ctx.send(embed=embed, mention_author=True, ephemeral=is_slash)
 
         except asyncio.TimeoutError:
@@ -422,35 +350,17 @@ class LikeCommands(commands.Cog):
     async def _send_player_not_found(self, ctx, uid):
         embed = discord.Embed(title="Player Not Found", description=f"The UID {uid} does not exist or is not accessible.", color=0xE74C3C)
         embed.add_field(name="Tip", value="Make sure that:\n- The UID is correct\n- The player is not private", inline=False)
-        try:
-            if ctx.interaction and not ctx.interaction.response.is_done():
-                await ctx.send(embed=embed, ephemeral=True)
-            elif not ctx.interaction:
-                await ctx.send(embed=embed)
-        except Exception as e:
-            print(f"Failed to send player not found embed: {e}")
+        await ctx.send(embed=embed, ephemeral=True)
         
     async def _send_api_error(self, ctx):
         embed = discord.Embed(title="⚠️ Service Unavailable", description="The Free Fire API is not responding at the moment.", color=0xF39C12)
         embed.add_field(name="Solution", value="Try again in a few minutes.", inline=False)
-        try:
-            if ctx.interaction and not ctx.interaction.response.is_done():
-                await ctx.send(embed=embed, ephemeral=True)
-            elif not ctx.interaction:
-                await ctx.send(embed=embed)
-        except Exception as e:
-            print(f"Failed to send API error embed: {e}")
+        await ctx.send(embed=embed, ephemeral=True)
 
     async def _send_error_embed(self, ctx, title, description, ephemeral=True):
         embed = discord.Embed(title=f"❌ {title}", description=description, color=discord.Color.red(), timestamp=datetime.now())
         embed.set_footer(text="An error occurred.")
-        try:
-            if ctx.interaction and not ctx.interaction.response.is_done():
-                await ctx.send(embed=embed, ephemeral=ephemeral)
-            elif not ctx.interaction:
-                await ctx.send(embed=embed)
-        except Exception as e:
-            print(f"Failed to send error embed: {e}")
+        await ctx.send(embed=embed, ephemeral=ephemeral)
 
     def cog_unload(self):
         self.bot.loop.create_task(self.session.close())
