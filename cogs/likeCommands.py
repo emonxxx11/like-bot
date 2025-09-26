@@ -139,7 +139,8 @@ class LikeCommands(commands.Cog):
                     else:
                         embed.description = "This UID has already received the maximum likes today.\nPlease wait 24 hours and try again"
 
-                    embed.set_footer(text="Powered by EMON XITER'S")
+                    embed.set_footer(text="**Powered by EMON XITER'S AND PMM CHEAT'S**")
+                    embed.set_image(url="https://cdn.discordapp.com/attachments/1387354011744866386/1420067300253634673/standard_2.gif?ex=68d757fb&is=68d6067b&hm=9664b25e6e204e2c9faf9dc478c9ecf3aab6f0b29442d4883bda5a50a6320af4")
                     embed.description += "\n🔗 JOIN : https://discord.gg/98QznNwPCc"
                     await ctx.send(embed=embed, mention_author=True, ephemeral=is_slash)
 
