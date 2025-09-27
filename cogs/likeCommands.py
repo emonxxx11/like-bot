@@ -120,7 +120,7 @@ class LikeCommands(commands.Cog):
                             # Promotional Banner
                             embed.add_field(
                                 name="",
-                                value="**FREE FIRE LIKE**\n*LUMINA OFFICIAL*\n\n**INSTANT DELIVERY**",
+                                value="**INSTANT DELIVERY**",
                                 inline=False
                             )
                         else:
@@ -260,7 +260,7 @@ class LikeCommands(commands.Cog):
                         # Promotional Banner
                         embed.add_field(
                             name="",
-                            value="**FREE FIRE LIKE**\n*LUMINA OFFICIAL*\n\n**INSTANT DELIVERY**",
+                            value="**INSTANT DELIVERY**",
                             inline=False
                         )
                     else:
